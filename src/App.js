@@ -9,6 +9,12 @@ export default class App extends Component {
     crimes: []
   }
 
+  deleteItem = (index, event) => {
+    this.setState((previousState) => (
+      {crimes: previousState.crimes.filter((crime, i) => i !== index )
+    }))
+  }
+
     getCrimes = async () => {
 
     try {
@@ -33,7 +39,7 @@ export default class App extends Component {
     return (
       <div className="App">
         <h1>Hello, World!</h1>
-        <CrimesList crimes={this.state.crimes} />
+        <CrimesList crimes={this.state.crimes} deleteItem={this.deleteItem} />
       </div>
     );
   }
